@@ -1,9 +1,6 @@
 import {Component} from 'angular2/core';
-
-export class Hero {
-    id:number;
-    name:string;
-}
+import {Hero} from './hero';
+import {HeroDetailComponent} from './hero-detail.component';
 
 @Component({
     selector: 'my-app',
@@ -17,16 +14,9 @@ export class Hero {
             <span class="badge">{{hero.id}}</span> {{hero.name}}
           </li>
         </ul>
-        <div *ngIf="selectedHero">
-          <h2>{{selectedHero.name}} details!</h2>
-          <div><label>id: </label>{{selectedHero.id}}</div>
-          <div>
-            <label>name: </label>
-            <input [(ngModel)]="selectedHero.name" placeholder="name"/>
-          </div>
-        </div>
+        <my-hero-detail [hero]="selectedHero"></my-hero-detail>
       `,
-    styles:[`
+    styles: [`
     .selected {
       background-color: #CFD8DC !important;
       color: white;
@@ -74,25 +64,28 @@ export class Hero {
       margin-right: .8em;
       border-radius: 4px 0 0 4px;
     }
-  `]
+  `],
+    directives: [HeroDetailComponent]
 })
 export class AppComponent {
     public title = 'Tour of Heroes';
     heroes = HEROES;
-    selectedHero: Hero;
-    
-    onSelect(hero: Hero) { this.selectedHero = hero; }
+    selectedHero:Hero;
+
+    onSelect(hero:Hero) {
+        this.selectedHero = hero;
+    }
 }
 
-var HEROES: Hero[] = [
-    { "id": 11, "name": "Mr. Nice" },
-    { "id": 12, "name": "Narco" },
-    { "id": 13, "name": "Bombasto" },
-    { "id": 14, "name": "Celeritas" },
-    { "id": 15, "name": "Magneta" },
-    { "id": 16, "name": "RubberMan" },
-    { "id": 17, "name": "Dynama" },
-    { "id": 18, "name": "Dr IQ" },
-    { "id": 19, "name": "Magma" },
-    { "id": 20, "name": "Tornado" }
+var HEROES:Hero[] = [
+    {"id": 11, "name": "Mr. Nice"},
+    {"id": 12, "name": "Narco"},
+    {"id": 13, "name": "Bombasto"},
+    {"id": 14, "name": "Celeritas"},
+    {"id": 15, "name": "Magneta"},
+    {"id": 16, "name": "RubberMan"},
+    {"id": 17, "name": "Dynama"},
+    {"id": 18, "name": "Dr IQ"},
+    {"id": 19, "name": "Magma"},
+    {"id": 20, "name": "Tornado"}
 ];
