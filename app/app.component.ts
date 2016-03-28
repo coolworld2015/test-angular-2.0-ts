@@ -11,6 +11,11 @@ import 'rxjs/Rx';
     template: `
         <h1>{{title}}</h1>
         <h2>My Heroes</h2>
+		
+		  <li *ngFor="#man of hack(people)">
+            <span class="badge">{{man.id}}</span> {{man.name}}
+          </li>
+		  
         <ul class="heroes">
           <li *ngFor="#hero of heroes"
             [class.selected]="hero === selectedHero"
@@ -19,8 +24,12 @@ import 'rxjs/Rx';
           </li>
         </ul>
         <my-hero-detail [hero]="selectedHero"></my-hero-detail>
+		<!--
         <hr>
+        {{heroes | json}}
+		<hr>
         {{people | json}}
+		-->
       `,
     styles: [`
     .selected {
@@ -81,7 +90,8 @@ export class AppComponent {
     selectedHero: Hero;
 
     constructor(private _heroService: HeroService, http: Http) {
-        http.get('app/people.json')
+        //http.get('app/people.json')
+        http.get('http://ui-warehouse.herokuapp.com/api/clients/get')
             // Call map on the response observable to get the parsed people object
             .map(res => res.json())
             // Subscribe to the observable to get the parsed people object and attach it to the
@@ -91,7 +101,11 @@ export class AppComponent {
         this.heroes = this._heroService.getHeroes()
             .then(heroes => this.heroes = heroes);
     }
-
+	
+	hack(val) {
+	  return Array.from(val);
+	}
+	
     onSelect(hero:Hero) {
         this.selectedHero = hero;
     }
