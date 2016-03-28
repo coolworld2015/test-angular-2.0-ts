@@ -1,7 +1,10 @@
 import {Component} from 'angular2/core';
+import {Http, HTTP_PROVIDERS} from 'angular2/http';
+
 import {Hero} from './hero';
 import {HeroDetailComponent} from './hero-detail.component';
 import {HeroService} from './hero.service';
+import 'rxjs/Rx';
 
 @Component({
     selector: 'my-app',
@@ -16,6 +19,8 @@ import {HeroService} from './hero.service';
           </li>
         </ul>
         <my-hero-detail [hero]="selectedHero"></my-hero-detail>
+        <hr>
+        {{people | json}}
       `,
     styles: [`
     .selected {
@@ -67,14 +72,22 @@ import {HeroService} from './hero.service';
     }
   `],
     directives: [HeroDetailComponent],
-    providers: [HeroService]
+    providers: [HeroService, HTTP_PROVIDERS]
 })
 export class AppComponent {
     public title = 'Tour of Heroes';
     heroes = [];
+    people = {};
     selectedHero: Hero;
 
-    constructor(private _heroService: HeroService) {
+    constructor(private _heroService: HeroService, http: Http) {
+        http.get('app/people.json')
+            // Call map on the response observable to get the parsed people object
+            .map(res => res.json())
+            // Subscribe to the observable to get the parsed people object and attach it to the
+            // component
+            .subscribe(people => this.people = people);
+
         this.heroes = this._heroService.getHeroes()
             .then(heroes => this.heroes = heroes);
     }
