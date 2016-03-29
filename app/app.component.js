@@ -32,7 +32,7 @@ System.register(['angular2/core', 'angular2/http', './hero-detail.component', '.
                 function AppComponent(_heroService, http) {
                     var _this = this;
                     this._heroService = _heroService;
-                    this.title = 'Tour of Heroes';
+                    this.title = 'Angular 2 - Warehouse';
                     this.heroes = [];
                     this.people = {};
                     //http.get('app/people.json')
@@ -51,7 +51,7 @@ System.register(['angular2/core', 'angular2/http', './hero-detail.component', '.
                 AppComponent = __decorate([
                     core_1.Component({
                         selector: 'my-app',
-                        template: "\n        <h1>{{title}}</h1>\n        <h2>My Heroes</h2>\n\t\t\n\t\t  <li *ngFor=\"#man of hack(people)\">\n            <span class=\"badge\">{{man.id}}</span> {{man.name}}\n          </li>\n\t\t  \n        <ul class=\"heroes\">\n          <li *ngFor=\"#hero of heroes\"\n            [class.selected]=\"hero === selectedHero\"\n            (click)=\"onSelect(hero)\">\n            <span class=\"badge\">{{hero.id}}</span> {{hero.name}}\n          </li>\n        </ul>\n        <my-hero-detail [hero]=\"selectedHero\"></my-hero-detail>\n\t\t<!--\n        <hr>\n        {{heroes | json}}\n\t\t<hr>\n        {{people | json}}\n\t\t-->\n      ",
+                        template: "\n        <h1>{{title}}</h1>\n        <h2>Clients</h2>\n\n\t\t<ul class=\"heroes\">\n\t\t  <li *ngFor=\"#man of hack(people)\">\n            <span class=\"badge\">{{man.id}}</span> {{man.name}}\n          </li>\n\t\t</ul>\n\n\t\t<!--\n        <ul class=\"heroes\">\n          <li *ngFor=\"#hero of heroes\"\n            [class.selected]=\"hero === selectedHero\"\n            (click)=\"onSelect(hero)\">\n            <span class=\"badge\">{{hero.id}}</span> {{hero.name}}\n          </li>\n        </ul>\n        <my-hero-detail [hero]=\"selectedHero\"></my-hero-detail>\n        -->\n\t\t<!--\n        <hr>\n        {{heroes | json}}\n\t\t<hr>\n        {{people | json}}\n\t\t-->\n      ",
                         styles: ["\n    .selected {\n      background-color: #CFD8DC !important;\n      color: white;\n    }\n    .heroes {\n      margin: 0 0 2em 0;\n      list-style-type: none;\n      padding: 0;\n      width: 15em;\n    }\n    .heroes li {\n      cursor: pointer;\n      position: relative;\n      left: 0;\n      background-color: #EEE;\n      margin: .5em;\n      padding: .3em 0;\n      height: 1.6em;\n      border-radius: 4px;\n    }\n    .heroes li.selected:hover {\n      background-color: #BBD8DC !important;\n      color: white;\n    }\n    .heroes li:hover {\n      color: #607D8B;\n      background-color: #DDD;\n      left: .1em;\n    }\n    .heroes .text {\n      position: relative;\n      top: -3px;\n    }\n    .heroes .badge {\n      display: inline-block;\n      font-size: small;\n      color: white;\n      padding: 0.8em 0.7em 0 0.7em;\n      background-color: #607D8B;\n      line-height: 1em;\n      position: relative;\n      left: -1px;\n      top: -4px;\n      height: 1.8em;\n      margin-right: .8em;\n      border-radius: 4px 0 0 4px;\n    }\n  "],
                         directives: [hero_detail_component_1.HeroDetailComponent],
                         providers: [hero_service_1.HeroService, http_1.HTTP_PROVIDERS]

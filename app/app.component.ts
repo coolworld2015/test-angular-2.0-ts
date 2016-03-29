@@ -10,12 +10,15 @@ import 'rxjs/Rx';
     selector: 'my-app',
     template: `
         <h1>{{title}}</h1>
-        <h2>My Heroes</h2>
-		
+        <h2>Clients</h2>
+
+		<ul class="heroes">
 		  <li *ngFor="#man of hack(people)">
             <span class="badge">{{man.id}}</span> {{man.name}}
           </li>
-		  
+		</ul>
+
+		<!--
         <ul class="heroes">
           <li *ngFor="#hero of heroes"
             [class.selected]="hero === selectedHero"
@@ -24,6 +27,7 @@ import 'rxjs/Rx';
           </li>
         </ul>
         <my-hero-detail [hero]="selectedHero"></my-hero-detail>
+        -->
 		<!--
         <hr>
         {{heroes | json}}
@@ -84,7 +88,7 @@ import 'rxjs/Rx';
     providers: [HeroService, HTTP_PROVIDERS]
 })
 export class AppComponent {
-    public title = 'Tour of Heroes';
+    public title = 'Angular 2 - Warehouse';
     heroes = [];
     people = {};
     selectedHero: Hero;
