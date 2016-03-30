@@ -37,6 +37,7 @@ System.register(['angular2/core', 'angular2/router', './hero.service'], function
                 };
                 DashboardComponent.prototype.gotoDetail = function (hero) {
                     var link = ['HeroDetail', { id: hero.id }];
+                    console.log(hero);
                     this._router.navigate(link);
                 };
                 DashboardComponent = __decorate([

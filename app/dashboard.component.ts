@@ -25,6 +25,7 @@ export class DashboardComponent implements OnInit {
 
   gotoDetail(hero: Hero) {
     let link = ['HeroDetail', { id: hero.id }];
+    console.log(hero);
     this._router.navigate(link);
   }
 }
