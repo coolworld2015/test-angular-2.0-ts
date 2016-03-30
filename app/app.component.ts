@@ -2,15 +2,14 @@ import {Component} from 'angular2/core';
 import {Http, HTTP_PROVIDERS} from 'angular2/http';
 import {RouteConfig, ROUTER_DIRECTIVES, ROUTER_PROVIDERS} from 'angular2/router';
 import {Router} from 'angular2/router';
-
-import {Hero} from './hero';
-import {HeroDetailComponent} from './hero-detail.component';
-import {HeroService} from './hero.service';
 import 'rxjs/Rx';
 
+import {HeroService} from './hero.service';
+import {Hero} from './hero';
 import { DashboardComponent } from './dashboard.component';
 import { HeroesComponent } from './heroes.component';
 import { ClientsComponent } from './clients.component';
+import { HeroDetailComponent } from './hero-detail.component';
 
 @Component({
     selector: 'my-app',
@@ -18,7 +17,9 @@ import { ClientsComponent } from './clients.component';
         <nav>
             <a [routerLink]="['Dashboard']">Dashboard</a>
             <a [routerLink]="['Clients']">Clients</a>
-            <div (click)="goClients()">Clients</div>
+            <a [routerLink]="['Heroes']">Heroes</a>
+
+            <!-- <div (click)="goClients()">Clients</div> -->
         </nav>
         <router-outlet></router-outlet>
 <!--
@@ -58,7 +59,7 @@ import { ClientsComponent } from './clients.component';
         path: '/dashboard',
         name: 'Dashboard',
         component: DashboardComponent,
-        useAsDefault: true
+        //useAsDefault: true
     },
     {
         path: '/clients',
@@ -70,11 +71,11 @@ import { ClientsComponent } from './clients.component';
         name: 'HeroDetail',
         component: HeroDetailComponent
     },
-    //{
-    //    path: '/heroes',
-    //    name: 'Heroes',
-    //    component: HeroesComponent
-    //}
+    {
+        path: '/heroes',
+        name: 'Heroes',
+        component: HeroesComponent
+    }
 ])
 export class AppComponent {
     public title = 'Angular 2 - Warehouse';
@@ -105,5 +106,10 @@ export class AppComponent {
 
     goClients() {
         this._router.navigate(['Clients']);
+    }
+
+    gotoDetail(hero: Hero) {
+        let link = ['HeroDetail', { id: hero.id }];
+        this._router.navigate(link);
     }
 }

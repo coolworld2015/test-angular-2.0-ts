@@ -1,4 +1,4 @@
-System.register(['angular2/core', 'angular2/http', 'angular2/router', './hero-detail.component', './hero.service', 'rxjs/Rx', './dashboard.component', './clients.component'], function(exports_1, context_1) {
+System.register(['angular2/core', 'angular2/http', 'angular2/router', 'rxjs/Rx', './hero.service', './dashboard.component', './heroes.component', './clients.component', './hero-detail.component'], function(exports_1, context_1) {
     "use strict";
     var __moduleName = context_1 && context_1.id;
     var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
@@ -10,7 +10,7 @@ System.register(['angular2/core', 'angular2/http', 'angular2/router', './hero-de
     var __metadata = (this && this.__metadata) || function (k, v) {
         if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
     };
-    var core_1, http_1, router_1, router_2, hero_detail_component_1, hero_service_1, dashboard_component_1, clients_component_1;
+    var core_1, http_1, router_1, router_2, hero_service_1, dashboard_component_1, heroes_component_1, clients_component_1, hero_detail_component_1;
     var AppComponent;
     return {
         setters:[
@@ -24,18 +24,21 @@ System.register(['angular2/core', 'angular2/http', 'angular2/router', './hero-de
                 router_1 = router_1_1;
                 router_2 = router_1_1;
             },
-            function (hero_detail_component_1_1) {
-                hero_detail_component_1 = hero_detail_component_1_1;
-            },
+            function (_1) {},
             function (hero_service_1_1) {
                 hero_service_1 = hero_service_1_1;
             },
-            function (_1) {},
             function (dashboard_component_1_1) {
                 dashboard_component_1 = dashboard_component_1_1;
             },
+            function (heroes_component_1_1) {
+                heroes_component_1 = heroes_component_1_1;
+            },
             function (clients_component_1_1) {
                 clients_component_1 = clients_component_1_1;
+            },
+            function (hero_detail_component_1_1) {
+                hero_detail_component_1 = hero_detail_component_1_1;
             }],
         execute: function() {
             AppComponent = (function () {
@@ -62,10 +65,14 @@ System.register(['angular2/core', 'angular2/http', 'angular2/router', './hero-de
                 AppComponent.prototype.goClients = function () {
                     this._router.navigate(['Clients']);
                 };
+                AppComponent.prototype.gotoDetail = function (hero) {
+                    var link = ['HeroDetail', { id: hero.id }];
+                    this._router.navigate(link);
+                };
                 AppComponent = __decorate([
                     core_1.Component({
                         selector: 'my-app',
-                        template: "\n        <nav>\n            <a [routerLink]=\"['Dashboard']\">Dashboard</a>\n            <a [routerLink]=\"['Clients']\">Clients</a>\n            <div (click)=\"goClients()\">Clients</div>\n        </nav>\n        <router-outlet></router-outlet>\n<!--\n        <h1>{{title}}</h1>\n        <h2>Clients</h2>\n\n\t\t<ul class=\"heroes\">\n\t\t  <li *ngFor=\"#man of hack(people)\">\n            <span class=\"badge\">{{man.id}}</span> {{man.name}}\n          </li>\n\t\t</ul>\n-->\n<!--\n        <ul class=\"heroes\">\n          <li *ngFor=\"#hero of heroes\"\n            [class.selected]=\"hero === selectedHero\"\n            (click)=\"onSelect(hero)\">\n            <span class=\"badge\">{{hero.id}}</span> {{hero.name}}\n          </li>\n        </ul>\n        <my-hero-detail [hero]=\"selectedHero\"></my-hero-detail>\n-->\n<!--\n        <hr>\n        {{heroes | json}}\n\t\t<hr>\n        {{people | json}}\n-->\n      ",
+                        template: "\n        <nav>\n            <a [routerLink]=\"['Dashboard']\">Dashboard</a>\n            <a [routerLink]=\"['Clients']\">Clients</a>\n            <a [routerLink]=\"['Heroes']\">Heroes</a>\n\n            <!-- <div (click)=\"goClients()\">Clients</div> -->\n        </nav>\n        <router-outlet></router-outlet>\n<!--\n        <h1>{{title}}</h1>\n        <h2>Clients</h2>\n\n\t\t<ul class=\"heroes\">\n\t\t  <li *ngFor=\"#man of hack(people)\">\n            <span class=\"badge\">{{man.id}}</span> {{man.name}}\n          </li>\n\t\t</ul>\n-->\n<!--\n        <ul class=\"heroes\">\n          <li *ngFor=\"#hero of heroes\"\n            [class.selected]=\"hero === selectedHero\"\n            (click)=\"onSelect(hero)\">\n            <span class=\"badge\">{{hero.id}}</span> {{hero.name}}\n          </li>\n        </ul>\n        <my-hero-detail [hero]=\"selectedHero\"></my-hero-detail>\n-->\n<!--\n        <hr>\n        {{heroes | json}}\n\t\t<hr>\n        {{people | json}}\n-->\n      ",
                         styleUrls: ['app/app.component.css'],
                         directives: [hero_detail_component_1.HeroDetailComponent, router_1.ROUTER_DIRECTIVES],
                         providers: [hero_service_1.HeroService, http_1.HTTP_PROVIDERS, router_1.ROUTER_PROVIDERS]
@@ -75,7 +82,6 @@ System.register(['angular2/core', 'angular2/http', 'angular2/router', './hero-de
                             path: '/dashboard',
                             name: 'Dashboard',
                             component: dashboard_component_1.DashboardComponent,
-                            useAsDefault: true
                         },
                         {
                             path: '/clients',
@@ -87,6 +93,11 @@ System.register(['angular2/core', 'angular2/http', 'angular2/router', './hero-de
                             name: 'HeroDetail',
                             component: hero_detail_component_1.HeroDetailComponent
                         },
+                        {
+                            path: '/heroes',
+                            name: 'Heroes',
+                            component: heroes_component_1.HeroesComponent
+                        }
                     ]), 
                     __metadata('design:paramtypes', [hero_service_1.HeroService, http_1.Http, router_2.Router])
                 ], AppComponent);

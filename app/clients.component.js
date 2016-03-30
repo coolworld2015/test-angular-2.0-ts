@@ -1,4 +1,4 @@
-System.register(['angular2/core', 'angular2/router', 'angular2/http', './hero.service'], function(exports_1, context_1) {
+System.register(['angular2/core', 'angular2/router', 'angular2/http'], function(exports_1, context_1) {
     "use strict";
     var __moduleName = context_1 && context_1.id;
     var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
@@ -10,7 +10,7 @@ System.register(['angular2/core', 'angular2/router', 'angular2/http', './hero.se
     var __metadata = (this && this.__metadata) || function (k, v) {
         if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
     };
-    var core_1, router_1, http_1, hero_service_1;
+    var core_1, router_1, http_1;
     var ClientsComponent;
     return {
         setters:[
@@ -22,20 +22,17 @@ System.register(['angular2/core', 'angular2/router', 'angular2/http', './hero.se
             },
             function (http_1_1) {
                 http_1 = http_1_1;
-            },
-            function (hero_service_1_1) {
-                hero_service_1 = hero_service_1_1;
             }],
         execute: function() {
             ClientsComponent = (function () {
-                function ClientsComponent(_heroService, http) {
+                function ClientsComponent(_http) {
                     var _this = this;
-                    this._heroService = _heroService;
+                    this._http = _http;
                     this.title = 'Angular 2 - Warehouse';
                     this.clients = {};
-                    http.get('http://ui-warehouse.herokuapp.com/api/clients/get')
+                    _http.get('http://ui-warehouse.herokuapp.com/api/clients/get')
                         .map(function (res) { return res.json(); })
-                        .subscribe(function (clients) { return _this.clients = clients; });
+                        .subscribe(function (clients) { return _this.clients = clients.slice(0, 6); });
                 }
                 ClientsComponent.prototype.hack = function (val) {
                     return Array.from(val);
@@ -48,7 +45,7 @@ System.register(['angular2/core', 'angular2/router', 'angular2/http', './hero.se
                         directives: [router_1.ROUTER_DIRECTIVES],
                         providers: [http_1.HTTP_PROVIDERS, router_1.ROUTER_PROVIDERS]
                     }), 
-                    __metadata('design:paramtypes', [hero_service_1.HeroService, http_1.Http])
+                    __metadata('design:paramtypes', [http_1.Http])
                 ], ClientsComponent);
                 return ClientsComponent;
             }());

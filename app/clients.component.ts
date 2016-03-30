@@ -27,13 +27,13 @@ export class ClientsComponent {
     public title = 'Angular 2 - Warehouse';
 	clients = {};
 
-    constructor(private _heroService: HeroService, http: Http) {
-        http.get('http://ui-warehouse.herokuapp.com/api/clients/get')
+    constructor(private _http: Http) {
+        _http.get('http://ui-warehouse.herokuapp.com/api/clients/get')
             .map(res => res.json())
-            .subscribe(clients => this.clients = clients);
+            .subscribe(clients => this.clients = clients.slice(0,6));
     }
-	
-	hack(val) {
+
+    public hack(val) {
 	  return Array.from(val);
 	}
 }
